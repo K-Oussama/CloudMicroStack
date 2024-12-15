@@ -1,0 +1,174 @@
+# Docker Compose configuration
+# infrastructure/docker/docker-compose.yml
+version: '3.8'
+
+services:
+  # Databases
+  mysql:
+    image: mysql:8.0
+    container_name: ecommerce-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: userdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - ecommerce-network
+
+  postgres-orders:
+    image: postgres:15-alpine
+    container_name: ecommerce-postgres-orders
+    environment:
+      POSTGRES_DB: orderdb
+      POSTGRES_USER: order_user
+      POSTGRES_PASSWORD: orderpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_orders_data:/var/lib/postgresql/data
+    networks:
+      - ecommerce-network
+
+  postgres-payments:
+    image: postgres:15-alpine
+    container_name: ecommerce-postgres-payments
+    environment:
+      POSTGRES_DB: paymentdb
+      POSTGRES_USER: payment_user
+      POSTGRES_PASSWORD: paymentpass
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_payments_data:/var/lib/postgresql/data
+    networks:
+      - ecommerce-network
+
+  mongodb:
+    image: mongo:6-jammy
+    container_name: ecommerce-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: adminpass
+      MONGO_INITDB_DATABASE: productdb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - ecommerce-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: ecommerce-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - ecommerce-network
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: ecommerce-rabbitmq
+    ports:
+      - "5672:5672"   # AMQP port
+      - "15672:15672" # Management UI
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbit
+      RABBITMQ_DEFAULT_PASS: rabbitpass
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - ecommerce-network
+
+  # Monitoring Stack
+  prometheus:
+    image: prom/prometheus:v2.45.0
+    container_name: prometheus
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - "9090:9090"
+    networks:
+      - ecommerce-network
+
+  grafana:
+    image: grafana/grafana:10.0.0
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SECURITY_ADMIN_USER=admin
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - ecommerce-network
+
+  elasticsearch:
+    image: elasticsearch:8.9.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - ecommerce-network
+
+  kibana:
+    image: kibana:8.9.0
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    networks:
+      - ecommerce-network
+
+  logstash:
+    image: logstash:8.9.0
+    container_name: logstash
+    volumes:
+      - ./monitoring/elk/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./monitoring/elk/logstash/pipeline:/usr/share/logstash/pipeline
+    ports:
+      - "5044:5044"
+      - "5000:5000"
+      - "9600:9600"
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    depends_on:
+      - elasticsearch
+    networks:
+      - ecommerce-network
+
+networks:
+  ecommerce-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  postgres_orders_data:
+  postgres_payments_data:
+  mongodb_data:
+  redis_data:
+  rabbitmq_data:
+  prometheus_data:
+  grafana_data:
+  elasticsearch_data:
