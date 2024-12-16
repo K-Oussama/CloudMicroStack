@@ -90,7 +90,7 @@ services:
     image: prom/prometheus:v2.45.0
     container_name: prometheus
     volumes:
-      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ../monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
@@ -145,8 +145,8 @@ services:
     image: logstash:8.9.0
     container_name: logstash
     volumes:
-      - ./monitoring/elk/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-      - ./monitoring/elk/logstash/pipeline:/usr/share/logstash/pipeline
+      - ../monitoring/elk/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ../monitoring/elk/logstash/pipeline:/usr/share/logstash/pipeline
     ports:
       - "5044:5044"
       - "5000:5000"
