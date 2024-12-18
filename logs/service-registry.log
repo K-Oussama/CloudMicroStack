@@ -1,0 +1,114 @@
+2024-12-18 21:56:20,754 INFO o.s.b.StartupInfoLogger [main] Starting ServiceRegistryApplication using Java 17.0.13 with PID 27822 (/workspaces/CloudMicroStack/backend/service-registry/target/classes started by codespace in /workspaces/CloudMicroStack)
+2024-12-18 21:56:20,757 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-12-18 21:56:21,793 INFO o.s.c.c.s.GenericScope [main] BeanFactory id=84b02305-c2ed-33f9-a5cd-1a1e0dfdbf33
+2024-12-18 21:56:22,015 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8761 (http)
+2024-12-18 21:56:22,025 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8761"]
+2024-12-18 21:56:22,028 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-12-18 21:56:22,029 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.33]
+2024-12-18 21:56:22,096 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-12-18 21:56:22,098 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1299 ms
+2024-12-18 21:56:22,352 ERROR o.s.b.w.e.t.TomcatStarter [main] Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'servletEndpointRegistrar' defined in class path resource [org/springframework/boot/actuate/autoconfigure/endpoint/web/ServletEndpointManagementContextConfiguration$WebMvcServletEndpointManagementContextConfiguration.class]: Unsatisfied dependency expressed through method 'servletEndpointRegistrar' parameter 0: No qualifying bean of type 'org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties' available: expected single matching bean but found 2: webEndpointProperties,management.endpoints.web-org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties
+2024-12-18 21:56:22,373 INFO o.a.j.l.DirectJDKLog [main] Stopping service [Tomcat]
+2024-12-18 21:56:22,378 WARN o.s.c.s.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2024-12-18 21:56:22,394 INFO o.s.b.a.l.ConditionEvaluationReportLogger [main] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-12-18 21:56:22,407 ERROR o.s.b.d.LoggingFailureAnalysisReporter [main] 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of method servletEndpointRegistrar in org.springframework.boot.actuate.autoconfigure.endpoint.web.ServletEndpointManagementContextConfiguration$WebMvcServletEndpointManagementContextConfiguration required a single bean, but 2 were found:
+	- webEndpointProperties: defined by method 'webEndpointProperties' in class path resource [com/cloudmicrostack/service_registry/config/ActuatorConfig.class]
+	- management.endpoints.web-org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties: defined in unknown location
+
+This may be due to missing parameter name information
+
+Action:
+
+Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
+
+Ensure that your compiler is configured to use the '-parameters' flag.
+You may need to update both your build tool settings as well as your IDE.
+(See https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-6.x#parameter-name-retention)
+
+
+2024-12-18 21:58:46,743 INFO o.s.b.StartupInfoLogger [main] Starting ServiceRegistryApplication using Java 17.0.13 with PID 29508 (/workspaces/CloudMicroStack/backend/service-registry/target/classes started by codespace in /workspaces/CloudMicroStack)
+2024-12-18 21:58:46,745 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-12-18 21:58:47,775 INFO o.s.c.c.s.GenericScope [main] BeanFactory id=84b02305-c2ed-33f9-a5cd-1a1e0dfdbf33
+2024-12-18 21:58:48,008 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8761 (http)
+2024-12-18 21:58:48,018 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8761"]
+2024-12-18 21:58:48,020 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-12-18 21:58:48,020 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.33]
+2024-12-18 21:58:48,085 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-12-18 21:58:48,085 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1299 ms
+2024-12-18 21:58:48,338 ERROR o.s.b.w.e.t.TomcatStarter [main] Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'servletEndpointRegistrar' defined in class path resource [org/springframework/boot/actuate/autoconfigure/endpoint/web/ServletEndpointManagementContextConfiguration$WebMvcServletEndpointManagementContextConfiguration.class]: Unsatisfied dependency expressed through method 'servletEndpointRegistrar' parameter 0: No qualifying bean of type 'org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties' available: expected single matching bean but found 2: webEndpointProperties,management.endpoints.web-org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties
+2024-12-18 21:58:48,371 INFO o.a.j.l.DirectJDKLog [main] Stopping service [Tomcat]
+2024-12-18 21:58:48,377 WARN o.s.c.s.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2024-12-18 21:58:48,401 INFO o.s.b.a.l.ConditionEvaluationReportLogger [main] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-12-18 21:58:48,418 ERROR o.s.b.d.LoggingFailureAnalysisReporter [main] 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of method servletEndpointRegistrar in org.springframework.boot.actuate.autoconfigure.endpoint.web.ServletEndpointManagementContextConfiguration$WebMvcServletEndpointManagementContextConfiguration required a single bean, but 2 were found:
+	- webEndpointProperties: defined by method 'webEndpointProperties' in class path resource [com/cloudmicrostack/service_registry/config/ActuatorConfig.class]
+	- management.endpoints.web-org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties: defined in unknown location
+
+This may be due to missing parameter name information
+
+Action:
+
+Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
+
+Ensure that your compiler is configured to use the '-parameters' flag.
+You may need to update both your build tool settings as well as your IDE.
+(See https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-6.x#parameter-name-retention)
+
+
+2024-12-18 21:59:53,141 INFO o.s.b.StartupInfoLogger [main] Starting ServiceRegistryApplication using Java 17.0.13 with PID 30327 (/workspaces/CloudMicroStack/backend/service-registry/target/classes started by codespace in /workspaces/CloudMicroStack)
+2024-12-18 21:59:53,144 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-12-18 21:59:54,156 INFO o.s.c.c.s.GenericScope [main] BeanFactory id=84b02305-c2ed-33f9-a5cd-1a1e0dfdbf33
+2024-12-18 21:59:54,395 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8761 (http)
+2024-12-18 21:59:54,405 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8761"]
+2024-12-18 21:59:54,406 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-12-18 21:59:54,407 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.33]
+2024-12-18 21:59:54,466 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-12-18 21:59:54,467 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1283 ms
+2024-12-18 21:59:54,724 ERROR o.s.b.w.e.t.TomcatStarter [main] Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'servletEndpointRegistrar' defined in class path resource [org/springframework/boot/actuate/autoconfigure/endpoint/web/ServletEndpointManagementContextConfiguration$WebMvcServletEndpointManagementContextConfiguration.class]: Unsatisfied dependency expressed through method 'servletEndpointRegistrar' parameter 0: No qualifying bean of type 'org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties' available: expected single matching bean but found 2: webEndpointProperties,management.endpoints.web-org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties
+2024-12-18 21:59:54,744 INFO o.a.j.l.DirectJDKLog [main] Stopping service [Tomcat]
+2024-12-18 21:59:54,749 WARN o.s.c.s.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2024-12-18 21:59:54,766 INFO o.s.b.a.l.ConditionEvaluationReportLogger [main] 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-12-18 21:59:54,779 ERROR o.s.b.d.LoggingFailureAnalysisReporter [main] 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of method servletEndpointRegistrar in org.springframework.boot.actuate.autoconfigure.endpoint.web.ServletEndpointManagementContextConfiguration$WebMvcServletEndpointManagementContextConfiguration required a single bean, but 2 were found:
+	- webEndpointProperties: defined by method 'webEndpointProperties' in class path resource [com/cloudmicrostack/service_registry/config/ActuatorConfig.class]
+	- management.endpoints.web-org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties: defined in unknown location
+
+This may be due to missing parameter name information
+
+Action:
+
+Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
+
+Ensure that your compiler is configured to use the '-parameters' flag.
+You may need to update both your build tool settings as well as your IDE.
+(See https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-6.x#parameter-name-retention)
+
+
