@@ -1,0 +1,38 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: service-registry
+  profiles:
+    active: dev
+  output:
+    ansi:
+      enabled: ALWAYS
+
+eureka:
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+    # Configuration pour Codespaces
+    nonSecurePortEnabled: true
+    securePortEnabled: false
+    statusPageUrl: https://${CODESPACE_NAME}-${server.port}.app.github.dev/actuator/info
+    healthCheckUrl: https://${CODESPACE_NAME}-${server.port}.app.github.dev/actuator/health
+    homePageUrl: https://${CODESPACE_NAME}-${server.port}.app.github.dev
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: https://${CODESPACE_NAME}-${server.port}.app.github.dev/eureka/
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
